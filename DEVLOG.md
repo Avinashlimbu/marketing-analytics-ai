@@ -17,6 +17,12 @@ After every session, add a new entry at the top with:
 ---
 
 
+For Session 2
+Context: marketing-analytics-ai project, Phase 1
+Last completed: Step 3 — mock data generator
+Next task: Step 4 — ingest all 4 CSVs and normalize into one unified table
+File to work on: src/ingest.py
+Activate venv first: source venv/bin/activate
 
 ## SESSION 1 — 2026-04-06
 
