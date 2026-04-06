@@ -1,0 +1,22 @@
+{
+  "platform": "google_ads",
+  "description": "Schema for Google Ads API response — campaign level daily data",
+  "fields": {
+    "date": "YYYY-MM-DD",
+    "campaign_id": "string",
+    "campaign_name": "string",
+    "campaign_type": "SEARCH | DISPLAY | VIDEO | PERFORMANCE_MAX | SHOPPING",
+    "impressions": "integer",
+    "clicks": "integer",
+    "cost": "float (USD)",
+    "conversions": "float (can be fractional due to attribution)",
+    "conversion_value": "float (USD)",
+    "ctr": "float (clicks / impressions)",
+    "cpc": "float (cost / clicks)",
+    "cpm": "float (cost / impressions * 1000)",
+    "roas": "float (conversion_value / cost)",
+    "quality_score": "integer (1-10, search campaigns only)"
+  },
+  "granularity": "daily",
+  "attribution_default": "data-driven (DDA)"
+}

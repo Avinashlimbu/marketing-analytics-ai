@@ -1,0 +1,25 @@
+{
+  "platform": "dv360",
+  "description": "Schema for DV360 (Display & Video 360) API response — campaign level daily data",
+  "fields": {
+    "date": "YYYY-MM-DD",
+    "insertion_order_id": "string",
+    "insertion_order_name": "string",
+    "line_item_id": "string",
+    "line_item_name": "string",
+    "channel": "DISPLAY | VIDEO | AUDIO | YOUTUBE",
+    "impressions": "integer",
+    "clicks": "integer",
+    "media_cost": "float (USD)",
+    "total_cost": "float (USD, includes fees)",
+    "conversions": "float",
+    "conversion_value": "float (USD)",
+    "ctr": "float (clicks / impressions)",
+    "cpc": "float (media_cost / clicks)",
+    "cpm": "float (media_cost / impressions * 1000)",
+    "view_through_conversions": "integer",
+    "click_through_conversions": "integer"
+  },
+  "granularity": "daily",
+  "attribution_default": "last click, 30-day window"
+}

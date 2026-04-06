@@ -1,0 +1,21 @@
+{
+  "platform": "meta",
+  "description": "Schema for Meta Ads API response — campaign level daily data",
+  "fields": {
+    "date": "YYYY-MM-DD",
+    "campaign_id": "string",
+    "campaign_name": "string",
+    "objective": "CONVERSIONS | TRAFFIC | AWARENESS | LEAD_GENERATION",
+    "impressions": "integer",
+    "clicks": "integer",
+    "spend": "float (USD)",
+    "conversions": "integer",
+    "conversion_value": "float (USD)",
+    "ctr": "float (clicks / impressions)",
+    "cpc": "float (spend / clicks)",
+    "cpm": "float (spend / impressions * 1000)",
+    "roas": "float (conversion_value / spend)"
+  },
+  "granularity": "daily",
+  "attribution_default": "7-day click, 1-day view"
+}

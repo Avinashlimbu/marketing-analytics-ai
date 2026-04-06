@@ -1,0 +1,25 @@
+{
+  "platform": "x_ads",
+  "description": "Schema for X (Twitter) Ads API response — campaign level daily data",
+  "fields": {
+    "date": "YYYY-MM-DD",
+    "campaign_id": "string",
+    "campaign_name": "string",
+    "objective": "WEBSITE_CLICKS | ENGAGEMENTS | VIDEO_VIEWS | APP_INSTALLS | FOLLOWERS",
+    "impressions": "integer",
+    "clicks": "integer",
+    "spend": "float (USD)",
+    "conversions": "integer",
+    "conversion_value": "float (USD)",
+    "engagements": "integer (likes, retweets, replies, clicks combined)",
+    "video_views": "integer",
+    "follows": "integer",
+    "ctr": "float (clicks / impressions)",
+    "cpc": "float (spend / clicks)",
+    "cpm": "float (spend / impressions * 1000)",
+    "engagement_rate": "float (engagements / impressions)",
+    "roas": "float (conversion_value / spend)"
+  },
+  "granularity": "daily",
+  "attribution_default": "1-day click, 1-day view"
+}
