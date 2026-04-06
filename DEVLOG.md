@@ -15,14 +15,86 @@ After every session, add a new entry at the top with:
 - Commands or code worth remembering
 
 ---
+## SESSION 2 — 2026-04-07
 
 
-For Session 2
-Context: marketing-analytics-ai project, Phase 1
-Last completed: Step 3 — mock data generator
-Next task: Step 4 — ingest all 4 CSVs and normalize into one unified table
-File to work on: src/ingest.py
+### STEP 4 — Data Ingestion & Normalization
+⏱ 2026-04-07 | ~20 min
+
+#### What we did (plain English)
+
+Wrote `src/ingest.py` — a script that loads all 4 platform CSVs 
+and normalizes them into one unified table with consistent columns.
+
+Input: 4 separate CSVs with different column names and structures
+Output: 1 unified table — 1,260 rows, 13 columns, saved to 
+`data/mock/unified.csv`
+
+#### The normalization problem we solved
+
+Every platform uses different names for the same thing:
+
+| Concept | Meta | Google Ads | DV360 | X Ads |
+|---|---|---|---|---|
+| Money spent | `spend` | `cost` | `media_cost` | `spend` |
+| Campaign unit | `campaign` | `campaign` | `insertion_order` | `campaign` |
+| ROAS | included | included | not included | included |
+
+The script renames everything to a common vocabulary so all 
+4 platforms can sit in one table side by side.
+
+#### Bug we hit and fixed
+
+DV360 didn't have a `roas` column in the raw data — it has two 
+cost fields instead (`media_cost` and `total_cost`). Fix was to 
+calculate it manually:
+```python
+df["roas"] = (df["conversion_value"] / df["spend"]).round(2)
+```
+
+This is a good example of why you always run the code and check 
+the output — assumptions about data structure will always bite you.
+
+#### What the unified data already shows
+
+Even before any analysis, the normalized table tells a story:
+- DV360 — highest impressions, cheapest CPM, programmatic scale
+- Google — most expensive CPC, lower ROAS (attribution gap)
+- Meta — strongest ROAS, mid-range costs
+- X — cheapest overall, lowest volume
+
+#### What we learned
+- Normalization is about agreeing on a common vocabulary
+- Always calculate derived metrics from raw numbers when 
+  they're missing — never guess
+- A unified table is the foundation everything else builds on
+
+#### Prompts that drove this step
+
+1. *"venv is active now!"*
+   → Led to writing the full ingest.py with per-platform loaders
+
+2. *Error: `KeyError: "['roas'] not in index"`*
+   → Led to calculating ROAS manually for DV360
+
+---
+
+#### Status after this step
+- [x] All 4 platforms loaded
+- [x] Column names normalized
+- [x] ROAS calculated for DV360
+- [x] Unified CSV saved
+- [x] Phase 1 complete ✅
+
+---
+
+#### Next session starting point
+```
+Context: marketing-analytics-ai project
+Last completed: Phase 1 — all mock data ingested and normalized
+Next task: Phase 2 — analysis and visualization (src/analyze.py)
 Activate venv first: source venv/bin/activate
+```
 
 ## SESSION 1 — 2026-04-06
 
