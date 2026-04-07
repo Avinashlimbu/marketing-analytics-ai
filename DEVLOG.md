@@ -17,6 +17,82 @@ After every session, add a new entry at the top with:
 ---
 ## SESSION 2 — 2026-04-07
 
+### STEP 7 — Claude API Layer
+⏱ 2026-04-07 | ~25 min
+
+#### What we did (plain English)
+
+Wrote `src/ai_layer.py` — connects to the Claude API to interpret 
+marketing data in plain English. Built with a mock mode so 
+development can continue without API credits.
+
+#### The 4 AI analysis functions
+
+| Function | What it asks Claude |
+|---|---|
+| `ai_platform_summary()` | Interpret cross-platform performance |
+| `ai_campaign_analysis()` | Explain best and worst campaigns |
+| `ai_weekly_trends()` | Identify patterns in weekly data |
+| `ai_recommendations()` | Suggest Q2 budget reallocation |
+
+#### Smart features built in
+
+**Mock mode** — set `USE_REAL_API = False` to run without 
+API credits. Returns placeholder responses so the full pipeline 
+still works end to end.
+
+**Usage limits** — enforced automatically when real API is on:
+- `MAX_TOKENS_PER_CALL = 1000` — caps each response length
+- `MAX_CALLS_PER_RUN = 4` — max API calls per script run
+- `DAILY_SPEND_LIMIT = $0.10` — hard stop on daily spend
+
+**Cost tracking** — every real API call prints:
+
+**To switch to real API when credits are added:**
+```python
+# In src/ai_layer.py, change line 8 to:
+USE_REAL_API = True
+```
+
+#### What we learned
+- Always build a mock mode first — lets you keep building 
+  without dependencies on paid services
+- Token limits protect your wallet during development
+- Separating mock vs real with a single flag is clean and safe
+- The system prompt is where the "personality" of the AI 
+  analyst lives — worth investing time here later
+
+#### Key design decision
+The system prompt tells Claude it's a senior digital marketing 
+analyst for a fintech company in Japan. This context shapes 
+every response — without it, answers would be too generic.
+
+#### Prompts that drove this step
+1. *"sure let's go into step 3 but before we do that please 
+   give me summary for devlog.md"*
+   → Led to building ai_layer.py after devlog catchup
+
+2. *"wait so this needs for me to pay?"*
+   → Led to building mock mode so project continues without credits
+
+3. *"yeah let's finish the project first, and also i would like 
+   to set limits on each usage for the API call so that my 
+   credits won't be used all"*
+   → Led to building usage tracker and cost limits
+
+---
+
+#### Status after this step
+- [x] Claude API connected
+- [x] 4 analysis functions written
+- [x] Mock mode working
+- [x] Usage limits and cost tracking built in
+- [x] Phase 2 complete ✅
+
+---
+
+#### Next session starting point
+
 ### STEP 6 — Visualizations
 ⏱ 2026-04-07 | ~20 min
 
