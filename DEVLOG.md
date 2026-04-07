@@ -14,6 +14,36 @@ After every session, add a new entry at the top with:
 - What prompts / questions drove the work
 - Commands or code worth remembering
 
+
+
+## SESSION 3 START
+
+Project context:
+- Project: marketing-analytics-ai
+- Location: ~/Coding/projects/claude/marketing-analytics-ai
+- OS: Linux, Python venv
+
+Completed so far:
+- Phase 1 ✅ — project setup, mock data schemas, data generator, 
+  normalization (unified.csv)
+- Phase 2 ✅ — analyze.py (5 analysis functions), visualize.py 
+  (7 charts), ai_layer.py (mock mode + usage limits)
+
+Today's goal:
+- Phase 3 — build a simple Streamlit web UI that ties everything 
+  together into one dashboard with AI insights
+
+First thing to run:
+cd ~/Coding/projects/claude/marketing-analytics-ai
+source venv/bin/activate
+git status
+
+Files to know:
+- src/analyze.py — analysis functions
+- src/visualize.py — chart generation
+- src/ai_layer.py — Claude API layer (USE_REAL_API = False currently)
+- data/mock/unified.csv — the normalized dataset
+- DEVLOG.md — running log of everything built
 ---
 ## SESSION 2 — 2026-04-07
 
