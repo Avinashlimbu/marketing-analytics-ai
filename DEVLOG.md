@@ -17,6 +17,111 @@ After every session, add a new entry at the top with:
 ---
 ## SESSION 2 — 2026-04-07
 
+### STEP 6 — Visualizations
+⏱ 2026-04-07 | ~20 min
+
+#### What we did (plain English)
+
+Wrote `src/visualize.py` — generates 7 interactive HTML charts 
+from the unified dataset using Plotly.
+
+Output saved to `data/output/`:
+- `spend_by_platform.html` — bar chart, total spend per platform
+- `roas_by_platform.html` — bar chart, ROAS per platform
+- `weekly_spend.html` — line chart, spend trends over time
+- `weekly_roas.html` — line chart, ROAS trends over time
+- `cost_efficiency.html` — scatter plot, CPM vs CPC per platform
+- `top_campaigns.html` — horizontal bar, top 10 campaigns by value
+- `dashboard.html` — combined 2x2 view of all key metrics
+
+#### Why Plotly
+Plotly outputs interactive HTML files — no server needed, 
+opens straight in a browser. You can hover, zoom, and filter.
+Easy to share, easy to embed later in a web UI.
+
+#### Bug we hit and fixed
+Script couldn't find `unified.csv` because it was being run 
+from the wrong directory. Fix: always run scripts from project 
+root, not from inside `src/`.
+```bash
+# Always run from here
+cd ~/Coding/projects/claude/marketing-analytics-ai
+python3 src/visualize.py
+```
+
+#### What we learned
+- Always run Python scripts from project root to avoid path issues
+- Plotly charts are HTML files — no extra setup to view them
+- Build structure first, improve design later
+
+#### Prompts that drove this step
+1. *"let's go into step 3 but before we do that please give me 
+   summary for devlog.md"*
+   → Led to this entry
+
+---
+
+#### Status after this step
+- [x] 7 charts generated and verified
+- [x] Combined dashboard working
+- [x] Charts open correctly in browser
+- [ ] Claude API layer ← next
+
+---
+
+### STEP 5 — Analysis Functions
+⏱ 2026-04-07 | ~20 min
+
+#### What we did (plain English)
+
+Wrote `src/analyze.py` — answers 5 core marketing questions 
+from the unified dataset.
+
+#### The 5 functions
+
+| Function | What it answers |
+|---|---|
+| `platform_summary()` | Total spend, conversions, ROAS per platform |
+| `best_worst_campaigns()` | Top and bottom campaigns by any metric |
+| `weekly_trends()` | Week by week performance per platform |
+| `cost_efficiency()` | CPM and CPC comparison across platforms |
+| `conversion_leaders()` | Which campaigns drove the most value |
+
+#### What the data told us
+
+**Meta** — best ROAS (16.13x), cheapest CPC ($0.60), most conversions
+**DV360** — highest spend, cheapest CPM, but weakest ROAS of top 3
+**Google** — expensive CPC ($6.68) but strong conversion value
+**X** — cheapest overall but lowest ROAS (3.34x) — brand play, not conversion
+
+**Top insight:** Meta Retargeting costs only $4.85 per conversion. 
+DV360 Programmatic Display costs $14.81 — nearly 3x more expensive.
+
+**Attribution flag:** X "Follower Campaign" has lowest ROAS (2.94) 
+— expected, it's not a conversion campaign. This is the kind of 
+context an AI layer can automatically add.
+
+#### What we learned
+- Analysis functions should be importable — other scripts 
+  (`visualize.py`, `ai_layer.py`) import from `analyze.py`
+- Always calculate ROAS from raw numbers, not averages of averages
+- Data tells a story even before visualization
+
+#### Prompts that drove this step
+1. *"ready"* after venv confirmed active
+   → Led to writing full analyze.py
+
+---
+
+#### Next session starting point
+```
+Context: marketing-analytics-ai project, Phase 2
+Last completed: Steps 5 & 6 — analysis and visualizations working
+Next task: Step 7 — Claude API layer (src/ai_layer.py)
+Run from project root always: 
+cd ~/Coding/projects/claude/marketing-analytics-ai
+source venv/bin/activate
+```
 
 ### STEP 4 — Data Ingestion & Normalization
 ⏱ 2026-04-07 | ~20 min
