@@ -1,3 +1,16 @@
+# ── ADDING A NEW PLATFORM ─────────────────────────────────────────────────────
+# To add a new platform (e.g. LinkedIn, TikTok):
+# 1. Add mock data schema to data/schemas/<platform>.json
+# 2. Add campaign names to CAMPAIGNS dict in data/mock/generate_mock_data.py
+# 3. Add a generate_<platform>() function in generate_mock_data.py
+# 4. Add a load_<platform>() function in this file (ingest.py)
+# 5. Add the platform to the loaders dict in ingest_all()
+# 6. Add platform color to PLATFORM_COLORS in visualize.py and dashboard.py
+#
+# Future improvement: refactor into plugin architecture where each platform
+# is a self-contained module that auto-registers itself.
+# ─────────────────────────────────────────────────────────────────────────────
+
 # ingest.py
 # Loads all 4 platform CSVs and normalizes them into one unified DataFrame
 # Each platform has different column names — this script reconciles them all
@@ -21,7 +34,18 @@ def load_meta(filepath):
         "date", "platform", "campaign_id", "campaign_name",
         "impressions", "clicks", "spend", "conversions",
         "conversion_value", "ctr", "cpc", "cpm", "roas"
-    ]]
+    ]]# ── ADDING A NEW PLATFORM ─────────────────────────────────────────────────────
+# To add a new platform (e.g. LinkedIn, TikTok):
+# 1. Add mock data schema to data/schemas/<platform>.json
+# 2. Add campaign names to CAMPAIGNS dict in data/mock/generate_mock_data.py
+# 3. Add a generate_<platform>() function in generate_mock_data.py
+# 4. Add a load_<platform>() function in this file (ingest.py)
+# 5. Add the platform to the loaders dict in ingest_all()
+# 6. Add platform color to PLATFORM_COLORS in visualize.py and dashboard.py
+#
+# Future improvement: refactor into plugin architecture where each platform
+# is a self-contained module that auto-registers itself.
+# ─────────────────────────────────────────────────────────────────────────────
 
 
 def load_google_ads(filepath):
