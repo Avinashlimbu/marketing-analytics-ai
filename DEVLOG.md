@@ -14,7 +14,35 @@ After every session, add a new entry at the top with:
 - What prompts / questions drove the work
 - Commands or code worth remembering
 
+## SESSION 4 START
 
+Project context:
+- Project: marketing-analytics-ai
+- Location: ~/Coding/projects/claude/marketing-analytics-ai
+- OS: Linux, Python venv
+
+Completed so far:
+- Phase 1 ✅ — project setup, mock data schemas, data generator, normalization
+- Phase 2 ✅ — analyze.py, visualize.py, ai_layer.py (mock mode + usage limits)
+- Phase 3 ✅ — Streamlit dashboard with overview, charts, AI insights tabs
+
+Today's goal:
+- Push to GitHub with proper README
+- Deploy to Streamlit Cloud for live public URL
+- Write README.md that explains the project for recruiters
+
+First thing to run:
+cd ~/Coding/projects/claude/marketing-analytics-ai
+source venv/bin/activate
+git status
+
+Files to know:
+- src/dashboard.py — main Streamlit app
+- src/analyze.py — analysis functions
+- src/visualize.py — chart generation
+- src/ai_layer.py — Claude API (USE_REAL_API = False)
+- data/mock/unified.csv — normalized dataset
+- DEVLOG.md — full development log
 
 ## SESSION 3 — 2026-04-08
 
