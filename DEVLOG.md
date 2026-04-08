@@ -16,34 +16,123 @@ After every session, add a new entry at the top with:
 
 
 
-## SESSION 3 START
+## SESSION 3 — 2026-04-08
 
-Project context:
-- Project: marketing-analytics-ai
-- Location: ~/Coding/projects/claude/marketing-analytics-ai
-- OS: Linux, Python venv
+### STEP 8 — Streamlit Dashboard
+⏱ 2026-04-08 | ~45 min
 
-Completed so far:
-- Phase 1 ✅ — project setup, mock data schemas, data generator, 
-  normalization (unified.csv)
-- Phase 2 ✅ — analyze.py (5 analysis functions), visualize.py 
-  (7 charts), ai_layer.py (mock mode + usage limits)
+#### What we did (plain English)
 
-Today's goal:
-- Phase 3 — build a simple Streamlit web UI that ties everything 
-  together into one dashboard with AI insights
+Built `src/dashboard.py` — a Streamlit web dashboard that ties 
+together everything from Phase 1 and 2 into one interactive UI.
 
-First thing to run:
-cd ~/Coding/projects/claude/marketing-analytics-ai
-source venv/bin/activate
-git status
+Run with:
+```bash
+streamlit run src/dashboard.py
+```
 
-Files to know:
-- src/analyze.py — analysis functions
-- src/visualize.py — chart generation
-- src/ai_layer.py — Claude API layer (USE_REAL_API = False currently)
-- data/mock/unified.csv — the normalized dataset
-- DEVLOG.md — running log of everything built
+Opens in browser at `localhost:8501`
+
+#### What the dashboard has
+
+**Sidebar**
+- Date range filter — filters all charts and metrics
+- Platform selector — show/hide platforms across everything
+
+**Overview tab**
+- 4 KPI metrics at the top (spend, conversions, value, ROAS)
+- Platform breakdown table
+- Spend and ROAS bar charts side by side
+
+**Charts tab**
+- Weekly spend trends (line chart)
+- Weekly ROAS trends (line chart)
+- CPM vs CPC efficiency (scatter plot)
+- Top 10 campaigns by conversion value (horizontal bar)
+
+**AI Insights tab**
+- 4 buttons — each triggers a different AI analysis
+- Currently mock mode — real analysis when API credits added
+
+#### Bugs we hit and fixed
+
+**Bug 1 — scatter plot size error**
+When deselecting a platform, the scatter plot crashed because 
+`size=[20,20,20,20]` was hardcoded to 4 platforms.
+
+Fix: make size dynamic based on actual data length:
+```python
+# Before
+size=[20,20,20,20]
+
+# After
+size=[20] * len(efficiency)
+```
+
+**Bug 2 — date range mid-selection error**
+Streamlit's date picker briefly returns only 1 value while 
+user is selecting the end date. This caused an unpack error.
+
+Fix: handle both states gracefully:
+```python
+if len(date_range) == 2:
+    start_date, end_date = date_range
+else:
+    start_date, end_date = date_range[0], max_date
+```
+
+#### Architecture decision
+Added `sys.path.append(os.path.dirname(__file__))` at the top 
+so dashboard.py can import from analyze.py and ai_layer.py 
+even when run from project root.
+
+#### Future improvement noted
+Added comment in ingest.py documenting exactly what files to 
+touch when adding a new platform. Plugin architecture flagged 
+as a future refactor.
+
+#### What we learned
+- Streamlit is the fastest way to turn Python analysis into 
+  a shareable web app
+- Always make size/count arguments dynamic, never hardcode them
+- Streamlit auto-reloads on file save — fast feedback loop
+- Test with filters early — edge cases only appear when 
+  data shape changes
+
+#### Prompts that drove this step
+1. *"hold on what if i want to host it on github later?"*
+   → Led to explaining Streamlit Cloud as the deployment path
+
+2. *"how would we add a new platform in future?"*
+   → Led to adding architecture comment in ingest.py instead 
+   of over-engineering early
+
+3. Bug reports from live testing
+   → Led to two targeted fixes
+
+---
+
+#### Status after this step
+- [x] Streamlit dashboard built and tested
+- [x] All filters working
+- [x] All charts rendering
+- [x] AI insights tab working (mock mode)
+- [x] Two bugs fixed
+- [ ] Push to GitHub ← next
+- [ ] Deploy to Streamlit Cloud ← next
+- [ ] Enable real Claude API ← when credits added
+
+---
+
+#### Next session starting point
+```
+Context: marketing-analytics-ai project
+Completed: Phase 1 ✅ Phase 2 ✅ Phase 3 ✅
+Next task: Deploy — push to GitHub and host on Streamlit Cloud
+for a live shareable URL
+Activate venv first: source venv/bin/activate
+Run from project root always
+```
 ---
 ## SESSION 2 — 2026-04-07
 
