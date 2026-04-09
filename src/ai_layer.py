@@ -19,7 +19,16 @@ from analyze import (
 # ── SETUP ─────────────────────────────────────────────────────────────────────
 
 load_dotenv()
-client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+
+# Support both local .env and Streamlit Cloud secrets
+def _get_api_key():
+    try:
+        import streamlit as st
+        return st.secrets.get("ANTHROPIC_API_KEY") or os.getenv("ANTHROPIC_API_KEY")
+    except Exception:
+        return os.getenv("ANTHROPIC_API_KEY")
+
+client = anthropic.Anthropic(api_key=_get_api_key())
 MODEL = "claude-sonnet-4-20250514"
 
 # ── HELPERS ───────────────────────────────────────────────────────────────────

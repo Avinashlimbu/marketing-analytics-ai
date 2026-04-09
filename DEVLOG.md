@@ -14,6 +14,10 @@ After every session, add a new entry at the top with:
 - What prompts / questions drove the work
 - Commands or code worth remembering
 
+Before session starts for Dev:
+use below in bash
+
+cd ~/Coding/projects/claude/marketing-analytics-ai && source venv/bin/activate && echo "=== GIT ===" && git log --oneline -3 && echo "=== SRC ===" && ls src/ && echo "=== DATA ===" && ls data/mock/ && echo "=== READY ==="
 ## SESSION 4 START
 
 Project context:
