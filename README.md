@@ -2,7 +2,7 @@
 
 > A full-stack marketing analytics dashboard powered by Claude AI — built to demonstrate real-world data engineering, Python analysis, and LLM integration skills.
 
-**[🚀 Live Demo](https://your-app.streamlit.app)** · **[📓 Dev Log](DEVLOG.md)**
+**[🚀 Live Demo](https://marketing-analytics-ai.streamlit.app)** · **[📓 Dev Log](DEVLOG.md)**
 
 ---
 
